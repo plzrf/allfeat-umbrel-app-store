@@ -13,7 +13,6 @@ services:
     user: "1000:1000"
     entrypoint:
       - /bin/sh
-      - -lc
     env_file:
       - ${APP_DATA_DIR}/data/admin/config/node.env
     volumes:
@@ -22,7 +21,8 @@ services:
       - ./scripts/start-validator.sh:/start-validator.sh:ro
     ports:
       - "30333:30333/tcp"
-    command: /start-validator.sh
+    command:
+      - /start-validator.sh
 
   web:
     image: nginx:1.27-alpine
