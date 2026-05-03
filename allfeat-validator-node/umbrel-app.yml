@@ -2,7 +2,7 @@ manifestVersion: 1
 id: allfeat-validator-node
 category: networking
 name: Allfeat Validator
-version: "0.1.13"
+version: "0.1.14"
 tagline: Aura validator node for the Allfeat network
 description: >-
   Validator-only Umbrel app for Allfeat.
@@ -15,6 +15,7 @@ description: >-
 
   Switch to mainnet later by editing the persistent admin config.
 developer: Allfeat
+icon: icon.png
 repo: https://github.com/plzrf/allfeat-umbrel-app-store/tree/main/allfeat-validator-node
 website: https://allfeat.com/
 dependencies: []
