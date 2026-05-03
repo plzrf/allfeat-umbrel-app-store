@@ -35,7 +35,10 @@ mkdir -p "${CHAIN_DIR}" "${CONFIG_DIR}" "${KEYSTORE_DIR}" "${IDENTITY_DIR}" "${L
 
 if [[ ! -f "${NETWORK_KEY_FILE}" ]]; then
   umask 077
-  openssl rand -hex 32 >"${NETWORK_KEY_FILE}"
+  openssl rand 32 >"${NETWORK_KEY_FILE}"
+elif [[ $(wc -c <"${NETWORK_KEY_FILE}") -ne 32 ]]; then
+  umask 077
+  openssl rand 32 >"${NETWORK_KEY_FILE}"
 fi
 
 if [[ ! -f "${ENV_FILE}" ]]; then
