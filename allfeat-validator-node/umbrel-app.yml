@@ -6,6 +6,7 @@ version: "0.1.0"
 tagline: Aura validator node for the Allfeat network
 description: >-
   Validator-only Umbrel app for Allfeat.
+  Test to check how Umbrel refreshes app from custom store.
 
 
   The node defaults to Melodie and keeps chain data separate from validator
