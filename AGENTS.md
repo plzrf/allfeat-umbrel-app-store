@@ -9,6 +9,7 @@
 - `docker-compose.yml` maps `APP_ALLFEAT_CHAIN=melodie` to `melodie_3_staging` and `mainnet` or `allfeat` to `allfeat_staging`; other values are passed through.
 - `umbrel-app.yml` uses `port: 8081` so the app proxy does not collide with Umbrel's own node on host port `80`.
 - `allfeat-validator-node/icon.png` is generated from `../Allfeat/docs/logo.svg` and used as the app tile icon.
+- `web` mounts `${APP_DATA_DIR}/web`, not `./web`, so nginx serves the packaged `index.html` from the app data directory.
 - Public P2P is `30333`; RPC stays private.
 - Manual key import is expected after install; the keys that matter are GRANDPA, Aura, and `im_online`. The reference flow is `scripts/insert_keys.sh` in the main Allfeat repo.
 - If startup behavior changes, keep Umbrel 1.7 private app packaging compatibility (`umbrel-app.yml`, `docker-compose.yml`, optional `hooks/` and `web/`).

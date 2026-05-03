@@ -38,4 +38,4 @@ services:
     image: nginx:1.27-alpine
     restart: on-failure
     volumes:
-      - ./web:/usr/share/nginx/html:ro
+      - ${APP_DATA_DIR}/web:/usr/share/nginx/html:ro
