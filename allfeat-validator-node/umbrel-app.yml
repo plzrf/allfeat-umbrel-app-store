@@ -14,6 +14,7 @@ description: >-
 
   Switch to mainnet later by editing the persistent admin config.
 developer: Allfeat
+repo: https://github.com/plzrf/allfeat-umbrel-app-store/tree/main/allfeat-validator-node
 website: https://allfeat.com/
 dependencies: []
 port: 80
