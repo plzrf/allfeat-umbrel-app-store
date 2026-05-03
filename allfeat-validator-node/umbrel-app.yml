@@ -1,5 +1,5 @@
 manifestVersion: 1
-id: validator-node
+id: allfeat-validator-node
 category: networking
 name: Allfeat Validator
 version: "0.1.0"
