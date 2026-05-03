@@ -18,6 +18,16 @@ case "${APP_ALLFEAT_CHAIN:-melodie}" in
   *) CHAIN_ID="${APP_ALLFEAT_CHAIN}" ;;
 esac
 
+if [[ -f "${ENV_FILE}" ]]; then
+  # shellcheck disable=SC1090
+  source "${ENV_FILE}"
+  case "${APP_ALLFEAT_CHAIN:-melodie}" in
+    melodie) CHAIN_ID="melodie_3_staging" ;;
+    mainnet|allfeat) CHAIN_ID="allfeat_staging" ;;
+    *) CHAIN_ID="${APP_ALLFEAT_CHAIN}" ;;
+  esac
+fi
+
 NETWORK_DIR="${CHAIN_DIR}/chains/${CHAIN_ID}/network"
 NETWORK_KEY_FILE="${NETWORK_DIR}/secret_ed25519"
 
