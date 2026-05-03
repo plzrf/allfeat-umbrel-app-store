@@ -41,6 +41,7 @@ services:
         --chain "${APP_ALLFEAT_CHAIN:-melodie}"
         --name "${APP_ALLFEAT_NODE_NAME:-allfeat-validator}"
         --base-path /data/chain
+        --node-key-file "/data/chain/chains/${CHAIN_ID}/network/secret_ed25519"
         --validator
         --no-hardware-benchmarks
         --database=paritydb

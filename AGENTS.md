@@ -5,7 +5,7 @@
 - The validator image is pulled from `ghcr.io/plzrf/allfeat-validator:latest`; do not vendor the binary or store validator keys in the image.
 - Keep the app validator-only with default chain `melodie`.
 - Persistent state is split on purpose: `data/chain` is chain state, and `data/admin` holds config, keystore, identity, and logs.
-- `hooks/pre-start` creates `data/admin/config/node.env`, `keystore`, `identity`, and `logs`, then chowns `data/` to `1000:1000`.
+- `hooks/pre-start` creates `data/admin/config/node.env`, `keystore`, `identity`, and `logs`, generates `data/chain/chains/<chain>/network/secret_ed25519` on first start if missing, then chowns `data/` to `1000:1000`.
 - `docker-compose.yml` maps `APP_ALLFEAT_CHAIN=melodie` to `melodie_3_staging` and `mainnet` or `allfeat` to `allfeat_staging`; other values are passed through.
 - Public P2P is `30333`; RPC stays private.
 - Manual key import is expected after install; the keys that matter are GRANDPA, Aura, and `im_online`. The reference flow is `scripts/insert_keys.sh` in the main Allfeat repo.

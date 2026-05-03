@@ -12,7 +12,21 @@ IDENTITY_DIR="${ADMIN_DIR}/identity"
 LOG_DIR="${ADMIN_DIR}/logs"
 ENV_FILE="${CONFIG_DIR}/node.env"
 
-mkdir -p "${CHAIN_DIR}" "${CONFIG_DIR}" "${KEYSTORE_DIR}" "${IDENTITY_DIR}" "${LOG_DIR}"
+case "${APP_ALLFEAT_CHAIN:-melodie}" in
+  melodie) CHAIN_ID="melodie_3_staging" ;;
+  mainnet|allfeat) CHAIN_ID="allfeat_staging" ;;
+  *) CHAIN_ID="${APP_ALLFEAT_CHAIN}" ;;
+esac
+
+NETWORK_DIR="${CHAIN_DIR}/chains/${CHAIN_ID}/network"
+NETWORK_KEY_FILE="${NETWORK_DIR}/secret_ed25519"
+
+mkdir -p "${CHAIN_DIR}" "${CONFIG_DIR}" "${KEYSTORE_DIR}" "${IDENTITY_DIR}" "${LOG_DIR}" "${NETWORK_DIR}"
+
+if [[ ! -f "${NETWORK_KEY_FILE}" ]]; then
+  umask 077
+  openssl rand -hex 32 >"${NETWORK_KEY_FILE}"
+fi
 
 if [[ ! -f "${ENV_FILE}" ]]; then
   cat >"${ENV_FILE}" <<'EOF'
