@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Allfeat Validator</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 50rem; line-height: 1.5; }
+      code, pre { background: #f4f4f4; padding: 0.15rem 0.35rem; border-radius: 4px; }
+      pre { padding: 1rem; overflow-x: auto; }
+    </style>
+  </head>
+  <body>
+    <h1>Allfeat Validator</h1>
+    <p>Validator-only Umbrel app for Allfeat. Default chain: <code>melodie</code>.</p>
+    <ul>
+      <li><strong>Chain data:</strong> persisted separately from admin data.</li>
+      <li><strong>Admin data:</strong> keys and config survive app updates.</li>
+      <li><strong>P2P:</strong> forwarded externally through your VPS on <code>30333</code>.</li>
+      <li><strong>RPC:</strong> kept private.</li>
+    </ul>
+    <p>Manual key import should write into the persistent admin keystore.</p>
+    <pre>docker compose exec validator allfeat key --help</pre>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+manifestVersion: 1.1
+id: allfeat-validator
+category: networking
+name: Allfeat Validator
+version: "0.1.0"
+tagline: Aura validator node for the Allfeat network
+description: >-
+  Validator-only Umbrel app for Allfeat.
+
+
+  The node defaults to Melodie and keeps chain data separate from validator
+  keys and admin configuration so updates do not touch secrets.
+
+
+  Switch to mainnet later by editing the persistent admin config.
+developer: Allfeat
+website: https://allfeat.com/
+dependencies: []
+port: 80
+gallery:
+  - 1.jpg
+releaseNotes: >-
+  Initial private Umbrel packaging for the Allfeat validator node.
+
+
+  Uses separate persistent mounts for chain data and admin data, with manual
+  key import after install.
+path: ""
+defaultUsername: ""
+defaultPassword: ""

@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: allfeat-validator_web_1
+      APP_PORT: 80
+
+  validator:
+    image: ghcr.io/plzrf/allfeat-validator:latest
+    restart: on-failure
+    stop_grace_period: 1m
+    user: "1000:1000"
+    entrypoint:
+      - /bin/sh
+      - -lc
+    env_file:
+      - ${APP_DATA_DIR}/data/admin/config/node.env
+    volumes:
+      - ${APP_DATA_DIR}/data/chain:/data/chain
+      - ${APP_DATA_DIR}/data/admin:/data/admin
+    ports:
+      - "30333:30333/tcp"
+    command: |
+      set -eu
+      case "${APP_ALLFEAT_CHAIN:-melodie}" in
+        melodie) CHAIN_ID="melodie_3_staging" ;;
+        mainnet|allfeat) CHAIN_ID="allfeat_staging" ;;
+        *) CHAIN_ID="${APP_ALLFEAT_CHAIN}" ;;
+      esac
+
+      mkdir -p \
+        /data/chain/chains/"${CHAIN_ID}" \
+        /data/admin/config \
+        /data/admin/keystore \
+        /data/admin/identity \
+        /data/admin/logs
+
+      ln -sfn /data/admin/keystore /data/chain/keystore
+      ln -sfn /data/admin/keystore "/data/chain/chains/${CHAIN_ID}/keystore"
+
+      exec allfeat \
+        --chain "${APP_ALLFEAT_CHAIN:-melodie}" \
+        --name "${APP_ALLFEAT_NODE_NAME:-allfeat-validator}" \
+        --base-path /data/chain \
+        --validator \
+        --no-hardware-benchmarks \
+        --database=paritydb \
+        --port=30333
+
+  web:
+    image: nginx:1.27-alpine
+    restart: on-failure
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
