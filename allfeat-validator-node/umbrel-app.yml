@@ -2,7 +2,7 @@ manifestVersion: 1
 id: allfeat-validator-node
 category: networking
 name: Allfeat Validator
-version: "0.1.5"
+version: "0.1.6"
 tagline: Aura validator node for the Allfeat network
 description: >-
   Validator-only Umbrel app for Allfeat.
