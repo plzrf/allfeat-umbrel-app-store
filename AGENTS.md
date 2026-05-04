@@ -7,6 +7,7 @@
 - Persistent state is split on purpose: `data/chain` is chain state, and `data/admin` holds config, keystore, identity, and logs.
 - `hooks/pre-start` creates `data/admin/config/node.env`, `keystore`, `identity`, and `logs`, reads any existing `node.env` before deriving the chain, generates a raw 32-byte `data/chain/chains/<chain>/network/secret_ed25519` on first start if missing or invalid, then chowns `data/` to `1000:1000`.
 - `docker-compose.yml` maps `APP_ALLFEAT_CHAIN=melodie` to `melodie_3_staging` and `mainnet` or `allfeat` to `allfeat_staging`; other values are passed through.
+- `APP_ALLFEAT_PUBLIC_ADDRESS` is optional and, when set in `data/admin/config/node.env`, is passed through to `allfeat --public-addr`.
 - `umbrel-app.yml` uses `port: 8081` so the app proxy does not collide with Umbrel's own node on host port `80`.
 - `allfeat-validator-node/icon.png` is generated from `../Allfeat/docs/logo.svg` and used as the app tile icon.
 - `web` mounts `${APP_DATA_DIR}/web`, not `./web`, so nginx serves the packaged `index.html` from the app data directory.
